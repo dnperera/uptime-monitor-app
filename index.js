@@ -12,11 +12,13 @@ const server = http.createServer((req, res) => {
   //Get the pathname
   const path = parsedURL.pathname;
   const trimedPath = path.replace(/^\/+|\/+$/g, "");
-  //Get the http metho
-  const method = req.method.toLowerCase();
   //Get query string as an object
   const queryStringObject = parsedURL.query;
-  console.log(queryStringObject);
+  //Get the http method
+  const method = req.method.toLowerCase();
+  //Get the request header as an object
+  const headers = req.headers;
+  console.log(headers);
   res.end(`Query String `);
 });
 //start the server
