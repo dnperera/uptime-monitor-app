@@ -9,6 +9,13 @@ const url = require("url");
 const fs = require("fs");
 const { StringDecoder } = require("string_decoder");
 const config = require("./config");
+const _data = require("./lib/data");
+
+//Testing how write file works
+//@ToDO delete this
+_data.create("test", "testData", { name: "Dasith Perera", age: 5 }, error => {
+  console.log("final error status -->", error);
+});
 //Instantiate the http server
 const httpServer = http.createServer((req, res) => {
   unifiedServer(req, res);
