@@ -13,8 +13,9 @@ const _data = require("./lib/data");
 
 //Testing how write file works
 //@ToDO delete this
-_data.create("test", "testData", { name: "Dasith Perera", age: 5 }, error => {
-  console.log("final error status -->", error);
+_data.read("test", "testData", (error, data) => {
+  console.log("Error -->", error);
+  console.log("Data -->", data);
 });
 //Instantiate the http server
 const httpServer = http.createServer((req, res) => {
