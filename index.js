@@ -4,11 +4,36 @@
  */
 //Dependencies
 const http = require("http");
+const https = require("https");
 const url = require("url");
+const fs = require("fs");
 const { StringDecoder } = require("string_decoder");
 const config = require("./config");
-//create server
-const server = http.createServer((req, res) => {
+//Instantiate the http server
+const httpServer = http.createServer((req, res) => {
+  unifiedServer(req, res);
+});
+
+//start http server
+httpServer.listen(config.httpPort, () => {
+  console.log(`Server is listenning on port ${config.httpPort}`);
+});
+
+const httpsServerOptions = {
+  key: fs.readFileSync("./https/key.pem"),
+  cert: fs.readFileSync("./https/cert.pem")
+};
+//Instantiate the https server
+const httpsServer = http.createServer(httpsServerOptions, (req, res) => {
+  unifiedServer(req, res);
+});
+//start https server
+httpsServer.listen(config.httpsPort, () => {
+  console.log(`Server is listenning on port ${config.httpsPort}`);
+});
+
+//All the logic for both http and https server
+const unifiedServer = (req, res) => {
   //Get the url and parse it
   const parsedURL = url.parse(req.url, true);
   //Get the pathname
@@ -55,14 +80,7 @@ const server = http.createServer((req, res) => {
       console.log("Returnning Response -->", statusCode, payload);
     });
   });
-});
-//start the server
-server.listen(config.port, () => {
-  console.log(
-    `Server is listenning on port ${config.port} in ${config.envName} mode`
-  );
-});
-
+};
 //Define route handlers
 const handlers = {};
 handlers.sample = (data, callback) => {
