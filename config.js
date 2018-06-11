@@ -12,8 +12,8 @@ environments.staging = {
 };
 //Production environment
 environments.production = {
-  httpPort: 5000,
-  httpsPort: 5001,
+  httpPort: 8000,
+  httpsPort: 8001,
   envName: "production"
 };
 //Determin which environment was passed as a command line argument.

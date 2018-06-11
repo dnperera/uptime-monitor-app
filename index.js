@@ -24,7 +24,7 @@ const httpsServerOptions = {
   cert: fs.readFileSync("./https/cert.pem")
 };
 //Instantiate the https server
-const httpsServer = http.createServer(httpsServerOptions, (req, res) => {
+const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
   unifiedServer(req, res);
 });
 //start https server
@@ -83,9 +83,9 @@ const unifiedServer = (req, res) => {
 };
 //Define route handlers
 const handlers = {};
-handlers.sample = (data, callback) => {
-  //callback executed with http status and a payload object
-  callback(200, { name: "Dasith Perera" });
+//Ping handler
+handlers.ping = (data, callback) => {
+  callback(200);
 };
 //Not found handler
 handlers.notfound = (data, callback) => {
@@ -94,5 +94,5 @@ handlers.notfound = (data, callback) => {
 
 //Define a request router
 const router = {
-  sample: handlers.sample
+  ping: handlers.ping
 };
