@@ -6,6 +6,7 @@
 const http = require("http");
 const url = require("url");
 const { StringDecoder } = require("string_decoder");
+const config = require("./config");
 //create server
 const server = http.createServer((req, res) => {
   //Get the url and parse it
@@ -48,6 +49,7 @@ const server = http.createServer((req, res) => {
       statusCode = typeof statusCode === "number" ? statusCode : 200;
       //if the payload is not defined  default to empty object
       payload = typeof payload === "object" ? payload : {};
+      res.setHeader("Content-Type", "application/json");
       res.writeHead(statusCode);
       res.end(JSON.stringify(payload));
       console.log("Returnning Response -->", statusCode, payload);
@@ -55,15 +57,17 @@ const server = http.createServer((req, res) => {
   });
 });
 //start the server
-server.listen(3000, () => {
-  console.log(`Server is listenning on port 3000`);
+server.listen(config.port, () => {
+  console.log(
+    `Server is listenning on port ${config.port} in ${config.envName} mode`
+  );
 });
 
 //Define route handlers
 const handlers = {};
 handlers.sample = (data, callback) => {
   //callback executed with http status and a payload object
-  callback(406, { name: "Dasith Perera" });
+  callback(200, { name: "Dasith Perera" });
 };
 //Not found handler
 handlers.notfound = (data, callback) => {
