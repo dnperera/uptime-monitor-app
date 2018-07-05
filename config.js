@@ -8,13 +8,15 @@ const environments = {};
 environments.staging = {
   httpPort: 3000,
   httpsPort: 3001,
-  envName: "staging"
+  envName: "staging",
+  hashingSecret: "thisNodeOnlySecret"
 };
 //Production environment
 environments.production = {
   httpPort: 8000,
   httpsPort: 8001,
-  envName: "production"
+  envName: "production",
+  hashingSecret: "thisNodeOnlyProductionSecret"
 };
 //Determin which environment was passed as a command line argument.
 const currentEnvironment =
