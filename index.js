@@ -2,9 +2,10 @@
 const http = require("http");
 const https = require("https");
 const url = require("url");
+const fs = require("fs");
 const StringDecoder = require("string_decoder").StringDecoder;
 const config = require("./config");
-const fs = require("fs");
+const handlers = require("./lib/handlers");
 
 //instantiarting http server
 var httpServer = http.createServer((req, res) => {
@@ -90,22 +91,13 @@ var unifiedServer = (req, res) => {
     });
   });
 };
-//define the handlers
-var handlers = {};
 
-//define sample handlers
-handlers.sample = (data, callback) => {
-  //callback a http status code and payload object
-  callback(406, { appName: "Uptime Monitor" });
-};
-//define not found
-handlers.notFound = (data, callback) => {
-  callback(404);
-};
 //Define Request Router
 var router = {
-  sample: handlers.sample
+  ping: handlers.ping,
+  users: handlers.users
 };
+
 /**
  * Primary file for the uptime monitor API
  *
