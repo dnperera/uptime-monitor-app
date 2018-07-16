@@ -12,7 +12,7 @@ app.init = () => {
   //start the both http and https server
   server.init();
   //start the workers
-  workers.init();
+  //workers.init();
 };
 
 //Execute init method
