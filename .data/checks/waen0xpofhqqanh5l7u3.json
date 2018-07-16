@@ -1,1 +1,11 @@
-{"id":"waen0xpofhqqanh5l7u3","userPhone":"4157179272","protocol":"https","url":"www.salesforce.com","method":"get","successCodes":[200,201,202],"timeoutSeconds":3}
+{
+  "id": "waen0xpofhqqanh5l7u3",
+  "userPhone": "waen0xpofhqqanh5l7u3",
+  "protocol": "https",
+  "url": "www.google.com",
+  "method": "get",
+  "successCodes": [200, 201, 202],
+  "timeoutSeconds": 3,
+  "state": "up",
+  "lastChecked": 1531722251769
+}
